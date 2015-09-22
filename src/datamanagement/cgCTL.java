@@ -75,10 +75,13 @@ public class cgCTL {
 		}
 		return s;
 	}
-
+// Initially this method was used to disable button save and change marks and
+//enable just check marks button. There was no reason for a client to first change marks,
+//check grade before being able to save. hence i change the CGUI.setState6 from false to true
+//A client can now change scores, and click save without checking grade first.
 	public void enableChangeMarks() {
 		CGUI.setState4(false);
-		CGUI.setState6(false);
+		CGUI.setState6(true);
 		CGUI.setState5(true);
 		changed = true;
 	}
