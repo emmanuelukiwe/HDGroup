@@ -7,9 +7,12 @@ public class cgCTL {
 	Integer currentStudentID = null;
 	boolean changed = false;
 
+	//Constructor that creates a  cgCTL object
 	public cgCTL() {
 	}
 
+	//this method creates a CGUI object and sets various states that
+	//the CGUI will be in when the program executes
 	public void execute() {
 		CGUI = new cgUI(this);
 		CGUI.setState1(false);
@@ -20,13 +23,14 @@ public class cgCTL {
 		CGUI.setState5(false);
 		CGUI.setState6(false);
 		CGUI.Refresh3();
-
+//creates an objects of type Listunits
 		ListUnitsCTL luCTL = new ListUnitsCTL();
+//calls methid listUnits passing the CGIU as argument
 		luCTL.listUnits(CGUI);
 		CGUI.setVisible(true);
 		CGUI.setState1(true);
 	}
-
+//This method is used select course 
 	public void unitSelected(String code) {
 
 		if (code.equals("NONE"))
@@ -39,7 +43,7 @@ public class cgCTL {
 		}
 		CGUI.setState3(false);
 	}
-
+//this method is used to select student
 	public void studentSelected(Integer id) {
 		currentStudentID = id;
 		if (currentStudentID.intValue() == 0) {
@@ -64,7 +68,7 @@ public class cgCTL {
 
 		}
 	}
-
+//This method is used to check grade
 	public String checkGrade(float f, float g, float h) {
 		IUnit u = UnitManager.UM().getUnit(cuc);
 		String s = u.getGrade(f, g, h);
@@ -75,14 +79,14 @@ public class cgCTL {
 		}
 		return s;
 	}
-
+//this method is used to change marks
 	public void enableChangeMarks() {
 		CGUI.setState4(false);
 		CGUI.setState6(false);
 		CGUI.setState5(true);
 		changed = true;
 	}
-
+//this method is used to save the changed mark
 	public void saveGrade(float asg1, float asg2, float exam) {
 
 		IUnit u = UnitManager.UM().getUnit(cuc);

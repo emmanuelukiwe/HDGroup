@@ -1,3 +1,5 @@
+//This is the interface that lays down contracts that concrete classes like student must implement
+//and state behaviours
 package datamanagement;
 
 public interface IStudent {

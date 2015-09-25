@@ -39,10 +39,17 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 
 		jLabel1 = new javax.swing.JLabel();
 		jPanel1 = new javax.swing.JPanel();
+		jPanel1.setBackground(Color.PINK);
+		jPanel1.setForeground(Color.BLUE);
 		jComboBox1 = new javax.swing.JComboBox();
+		jComboBox1.setForeground(Color.BLUE);
 		jPanel2 = new javax.swing.JPanel();
+		jPanel2.setBackground(Color.PINK);
 		jComboBox2 = new javax.swing.JComboBox();
+		jComboBox2.setForeground(Color.BLUE);
 		jPanel3 = new javax.swing.JPanel();
+		jPanel3.setBackground(Color.PINK);
+		jPanel3.setForeground(Color.LIGHT_GRAY);
 		jLabel2 = new javax.swing.JLabel();
 		jLabel3 = new javax.swing.JLabel();
 		jLabel4 = new javax.swing.JLabel();
@@ -50,7 +57,10 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jTextField2 = new javax.swing.JTextField();
 		jTextField3 = new javax.swing.JTextField();
 		jButton1 = new javax.swing.JButton();
+		jButton1.setForeground(Color.BLACK);
+		jButton1.setBackground(Color.WHITE);
 		jPanel4 = new javax.swing.JPanel();
+		jPanel4.setBackground(Color.PINK);
 		jLabel5 = new javax.swing.JLabel();
 
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

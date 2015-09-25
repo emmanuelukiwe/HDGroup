@@ -1,3 +1,5 @@
+//interface that states contract for clearing and adding students
+//obviously the student class will implement this interface
 package datamanagement;
 
 /**
