@@ -5,8 +5,6 @@ import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
 import java.awt.Color;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		IStudentLister {
@@ -19,6 +17,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	Integer sid;
 
 	public cgUI(cgCTL ctl) {
+		getContentPane().setBackground(Color.ORANGE);
 		this.ctl = ctl;
 		uM = new javax.swing.DefaultComboBoxModel(new String[0]);
 		rM = new javax.swing.DefaultComboBoxModel(new String[0]);
@@ -35,6 +34,8 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	 */
 	// <editor-fold defaultstate="collapsed"
 	// desc="Generated Code">//GEN-BEGIN:initComponents
+	
+//Initializes class members by creating their objects	
 	private void initComponents() {
 
 		jLabel1 = new javax.swing.JLabel();
@@ -127,13 +128,15 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 
 		jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Marks"));
 
-		jLabel2.setText("Asg1:");
+		jLabel2.setText("Asg1:");//adds text to the button
 
-		jLabel3.setText("Asg2:");
+		jLabel3.setText("Asg2:");//adds text to the button
 
-		jLabel4.setText("Exam:");
+		jLabel4.setText("Exam:");//adds text to the button
 
-		jTextField1.setEditable(false);
+		jTextField1.setEditable(false);//field should not be editable
+		
+		//creates an event listener for the textfield using anonymous inner class
 		jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyTyped(java.awt.event.KeyEvent evt) {
 				jTextFieldKeyTyped(evt);
@@ -148,13 +151,15 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		});
 
 		jTextField3.setEditable(false);
+	//creates an event listener for the textfield using anonymous inner class
 		jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
 			public void keyTyped(java.awt.event.KeyEvent evt) {
 				jTextFieldKeyTyped(evt);
 			}
 		});
 
-		jButton1.setText("Change");
+		jButton1.setText("Change");//adds text to button
+		
 		jButton1.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton1ActionPerformed(evt);
@@ -162,7 +167,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		});
 		jButton2 = new javax.swing.JButton();
 		
-				jButton2.setText("Check Grade");
+				jButton2.setText("Check Grade");//add text to the button
 				jButton2.setActionCommand("checkGrade");
 				jButton2.addActionListener(new java.awt.event.ActionListener() {
 					public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -170,6 +175,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 					}
 				});
 
+				//placement of buttons, textfields, labels in appriopriate positions
 		javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(
 				jPanel3);
 		jPanel3Layout.setHorizontalGroup(
@@ -300,6 +306,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		pack();
 	}// </editor-fold>//GEN-END:initComponents
 
+	//Used to listen to the state of subject combo
 	private void jComboBox1ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox1ItemStateChanged
 		String cU = (String) jComboBox1.getSelectedItem();
 		Refresh3();
@@ -312,6 +319,7 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		}
 	}// GEN-LAST:event_jComboBox1ItemStateChanged
 
+	//Used to listen to the state of the student combo
 	private void jComboBox2ItemStateChanged(java.awt.event.ItemEvent evt) {// GEN-FIRST:event_jComboBox2ItemStateChanged
 		Refresh3();
 		String cS = (String) jComboBox2.getSelectedItem();
@@ -326,6 +334,12 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		}
 	}// GEN-LAST:event_jComboBox2ItemStateChanged
 
+	//This method is used to check the grade of the student.Once the check grade is clicked,
+	//the values are extracted and the checkGrade method is called.
+	//Initially this printed just the grade for example HD, but i added a text so that it prints
+	//something like your grade is HD. The call to the checkGrade is enclosed in a try and catch to
+	//handle exceptions that might be thrown by that call
+	
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton3ActionPerformed
 		f1 = new Float(jTextField1.getText()).floatValue();
 		f2 = new Float(jTextField2.getText()).floatValue();
@@ -333,16 +347,26 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		//lblErrMsg.setText("");
 		try {
 			String s = ctl.checkGrade(f1, f2, f3);
-			jLabel5.setText(s);
+			//add message to the display of the student's grade
+			jLabel5.setText( "Your grade is" +s);
 		}
 		catch (RuntimeException re) {
 			jlabel6.setText(re.getMessage());
 		}
+		
+		
+		
+	
 	}// GEN-LAST:event_jButton3ActionPerformed
-
+	
+	
+	//Method used to enable change of marks. This method is called from the action listener used to listen to
+	//the change marks button. It also calls the enableChnageMarks method to do the job
 	private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
 		ctl.enableChangeMarks();
+		
 		jLabel5.setText("");
+		
 		//lblErrMsg.setText("");
 	}// GEN-LAST:event_jButton1ActionPerformed
 
@@ -350,18 +374,24 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jLabel5.setText("");
 		jlabel6.setText("");
 	}// GEN-LAST:event_jTextField1KeyTyped
-
+	
+	
+//This method is used to listen to events on jButton2. Once an event occurs or a user clicks this button
+//the textfield arguments are copied and method saveGrade is called to save the grade for that particular
+//student such that when next, that subject is selected for that student, those grades appear in the textfield
 	private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
 		float asg1 = new Float(jTextField1.getText()).floatValue();
 		float asg2 = new Float(jTextField2.getText()).floatValue();
 		float exam = new Float(jTextField3.getText()).floatValue();
 		jlabel6.setText("");
+		
+	//Enclosed in a try and catch to handle exceptions that might occur as result of this method call
 		try {
 			ctl.saveGrade(asg1, asg2, exam);
 			//jButton3ActionPerformed(null);
 		}
 		catch (RuntimeException re) {
-			jlabel6.setText(re.getMessage());
+			jlabel6.setText(re.getMessage());//used to display error message
 		}
 	}// GEN-LAST:event_jButton2ActionPerformed
 
@@ -395,6 +425,8 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jlabel6.setText("");
 	}
 
+	//This method is used to update the record of a student by copying the value inputted into
+	//the textfield
 	public void setRecord(IStudentUnitRecord record) {
 		jTextField1.setText(new Float(record.getAsg1()).toString());
 		jTextField2.setText(new Float(record.getAsg2()).toString());
@@ -402,6 +434,8 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 		jLabel5.setText("");
 	}
 
+//This method is called, all the textfields become empty and uneditable ie: value cant be inputted
+//By setting a text to an empty string and calling the setEditable method passing a false as an argument
 	public void Refresh3() {
 		jTextField1.setText("");
 		jTextField2.setText("");
@@ -429,13 +463,16 @@ public class cgUI extends javax.swing.JFrame implements IUnitLister,
 	}
 
 	public void setState6(boolean b) {
+		
 		jButton3.setEnabled(b);
 	}
 
+	//Class members used to design the graphics of the program
 	// Variables declaration - do not modify//GEN-BEGIN:variables
 	private javax.swing.JButton jButton1;
 	private javax.swing.JButton jButton2;
 	private javax.swing.JButton jButton3;
+	private javax.swing.JButton jButton4;
 	private javax.swing.JComboBox jComboBox1;
 	private javax.swing.JComboBox jComboBox2;
 	private javax.swing.JLabel jLabel1;
